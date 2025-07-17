@@ -23,7 +23,7 @@ man: install-policy
 	sepolicy manpage --path . --domain ${TARGETS}_t
 
 install-policy: all
-	semodule -i ${TARGETS}.pp.bz2
+	semodule -X 200 -i ${TARGETS}.pp.bz2
 
 install: man
 	install -D -pm 644 ${TARGETS}.pp.bz2 ${DESTDIR}${SHAREDIR}/selinux/packages/container.pp.bz2

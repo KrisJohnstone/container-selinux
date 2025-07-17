@@ -1650,3 +1650,7 @@ tunable_policy(`deny_ptrace',`',`
 # netavark needs to write to /run/sysctl.d and needs the right label for systemd to read it.
 # https://issues.redhat.com/browse/RHEL-91380
 files_pid_filetrans(container_runtime_t, system_conf_t, dir, "sysctl.d")
+
+# Go 1.24 requires read/write to the socket.
+allow container_t kernel_t:tcp_socket read;
+allow container_t kernel_t:tcp_socket write;
